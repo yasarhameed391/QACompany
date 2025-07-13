@@ -1,3 +1,11 @@
 {
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/services/page": "app/services/page.js",
+  "/portfolio/page": "app/portfolio/page.js",
+  "/about/page": "app/about/page.js",
+  "/testimonials/page": "app/testimonials/page.js",
+  "/industries/page": "app/industries/page.js",
+  "/book/page": "app/book/page.js",
+  "/blog/page": "app/blog/page.js"
 }

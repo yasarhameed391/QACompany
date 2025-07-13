@@ -54,8 +54,8 @@ export default function Contact() {
         </button>
       </form>
       <div className="mt-8 text-center text-gray-700 dark:text-gray-300">
-        <p>Email: <a href="mailto:hello@qa-company.com" className="underline">hello@qa-company.com</a></p>
-        <p>Phone / WhatsApp: +971 50 123 4567</p>
+        <p>Email: <a href="mailto:hello@qa-company.com" className="underline">yasarhameed@humanceglobal.com</a></p>
+        <p>Phone / WhatsApp: +1 4378338866</p>
       </div>
     </section>
   )

@@ -1,3 +1,5 @@
+import ServicesGrid from '../components/ServicesGrid';
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -27,25 +29,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-primary-light dark:bg-primary-dark py-16 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 text-center text-gray-900 dark:text-gray-100">
-          {[
-            'Web & Mobile Test Automation',
-            'QA Strategy & Advisory',
-            'DevOps & CI/CD QA Integration',
-            'Performance & Security Testing',
-          ].map((item) => (
-            <div key={item} className="flex flex-col items-center space-y-3">
-              {/* Placeholder for icons - you can replace with actual SVG/Icon */}
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white text-xl font-bold">
-                {/* Initials or icon */}
-                {item.split(' ')[0][0]}
-              </div>
-              <p className="text-lg font-medium">{item}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ServicesGrid />
 
       {/* Optional: Add client logos or testimonial slider here */}
     </main>

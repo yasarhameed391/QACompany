@@ -46,7 +46,7 @@ export default function NavBar() {
     <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="text-xl font-bold text-primary dark:text-primary-light">
-          QACompany
+          Humance
         </Link>
 
         {/* Desktop Links */}
@@ -60,6 +60,14 @@ export default function NavBar() {
 
         {/* Right: Theme + Hamburger */}
         <div className="flex items-center space-x-4">
+          {/* Static Toggle Example – Simulate English Mode */}
+          {/* Language Toggle Placeholder */}
+          <button
+            title="العربية"
+            className="text-sm font-medium hover:underline text-gray-700 dark:text-gray-300"
+          >
+            AR
+          </button>
           {/* Theme toggle */}
           <button
             onClick={toggleDarkMode}

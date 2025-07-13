@@ -59,7 +59,7 @@ export default function Footer() {
       </div>
 
       <div className="text-center mt-8 text-xs text-gray-500 dark:text-gray-400">
-        &copy; {new Date().getFullYear()} QACompany. All rights reserved.
+        &copy; {new Date().getFullYear()} Humance Inc. All rights reserved.
       </div>
     </footer>
   )

@@ -3,11 +3,11 @@ import NavBar from '../components/NavBar'
 import Footer from '../components/Footer'
 
 export const metadata = {
-  title: 'QACompany By Yasar Hameed',
+  title: 'Humance By Yasar Hameed',
   keywords: 'QA, automation, consulting, Cypress, CI/CD, UAE',
   authors: [{ name: 'Yasar Hameed', url: 'https://yasarhameed.com' }],
   openGraph: {
-    title: 'QACompany By Yasar Hameed',
+    title: 'Humance By Yasar Hameed',
     description: 'Expert QA automation consulting for startups in UAE',
     url: 'https://qa-company.com',
     type: 'website',
