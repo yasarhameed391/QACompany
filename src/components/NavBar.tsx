@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { MoonIcon, SunIcon } from '@heroicons/react/24/outline'
+
 
 export default function NavBar() {
   const [darkMode, setDarkMode] = useState(false)
@@ -61,24 +63,15 @@ export default function NavBar() {
           {/* Theme toggle */}
           <button
             onClick={toggleDarkMode}
-            className="text-white dark:text-gray-300 hover:text-gray-100 transition p-2 rounded-full bg-gray-700 dark:bg-gray-200 dark:text-black"
-            aria-label="Toggle Dark Mode"
+            className="appearance-none bg-transparent border-none p-0 m-0 text-gray-700 dark:text-gray-100 hover:text-primary dark:hover:text-primary-light transition"
+            aria-label={darkMode ? 'Light Mode' : 'Dark Mode'}
             title={darkMode ? 'Light Mode' : 'Dark Mode'}
           >
             {darkMode ? (
-              // ☀️ Light mode icon
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                  d="M12 3v1m0 16v1m8.49-8.49h1m-18 0h1m14.14 5.66l-.7-.7M6.34 6.34l-.7-.7m12.02 12.02l-.7-.7M6.34 17.66l-.7-.7M12 7a5 5 0 100 10 5 5 0 000-10z"
-                />
-              </svg>
+              <SunIcon className="h-5 w-5" />
             ) : (
-              // 🌙 Dark mode icon
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
-              </svg>
+              <MoonIcon className="h-5 w-5" />
             )}
-
           </button>
 
           {/* Mobile menu */}
