@@ -5,83 +5,101 @@ import Link from 'next/link'
 
 export default function NavBar() {
   const [darkMode, setDarkMode] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      setDarkMode(true)
+    const storedTheme = localStorage.theme
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+    if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
       document.documentElement.classList.add('dark')
+      setDarkMode(true)
     }
   }, [])
 
-  function toggleDarkMode() {
+  const toggleDarkMode = () => {
     if (darkMode) {
       document.documentElement.classList.remove('dark')
-      setDarkMode(false)
+      localStorage.theme = 'light'
     } else {
       document.documentElement.classList.add('dark')
-      setDarkMode(true)
+      localStorage.theme = 'dark'
     }
+    setDarkMode(!darkMode)
   }
 
+  const navLinks = [
+    { label: 'Home', href: '/' },
+    { label: 'Services', href: '/services' },
+    { label: 'Industries', href: '/industries' },
+    { label: 'Portfolio', href: '/portfolio' },
+    { label: 'Testimonials', href: '/testimonials' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Book', href: '/book' },
+  ]
+
   return (
-    <nav className="bg-primary text-white dark:bg-black p-4">
-      <div className="max-w-5xl mx-auto flex justify-between items-center">
-        <div className="flex space-x-6">
-          <Link href="/" className="font-bold text-lg hover:underline dark:text-gray-300">
-            QACompany
-          </Link>
-          <Link href="/services" className="hover:underline dark:text-gray-300">
-            Services
-          </Link>
-          <Link href="/portfolio" className="hover:underline dark:text-gray-300">
-            Portfolio
-          </Link>
-          <Link href="/about" className="hover:underline dark:text-gray-300">
-            About
-          </Link>
-          <Link href="/contact" className="hover:underline dark:text-gray-300">
-            Contact
-          </Link>
+    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <Link href="/" className="text-xl font-bold text-primary dark:text-primary-light">
+          QACompany
+        </Link>
+
+        {/* Desktop Links */}
+        <div className="hidden md:flex gap-6 text-sm font-medium">
+          {navLinks.map(({ label, href }) => (
+            <Link key={href} href={href} className="hover:text-primary dark:hover:text-primary-light text-gray-700 dark:text-gray-300">
+              {label}
+            </Link>
+          ))}
         </div>
 
-        <button
-          onClick={toggleDarkMode}
-          className="bg-gray-800 dark:bg-gray-200 text-white dark:text-black p-2 rounded"
-          aria-label="Toggle Dark Mode"
-        >
-          {darkMode ? (
-            // Sun icon for light mode
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.142 5.657l-.707-.707M6.343 6.343l-.707-.707m12.02 12.02l-.707-.707M6.343 17.657l-.707-.707M12 7a5 5 0 100 10 5 5 0 000-10z"
-              />
+        {/* Right: Theme + Hamburger */}
+        <div className="flex items-center space-x-4">
+          {/* Theme toggle */}
+          <button
+            onClick={toggleDarkMode}
+            className="text-white dark:text-gray-300 hover:text-gray-100 transition p-2 rounded-full bg-gray-700 dark:bg-gray-200 dark:text-black"
+            aria-label="Toggle Dark Mode"
+            title={darkMode ? 'Light Mode' : 'Dark Mode'}
+          >
+            {darkMode ? (
+              // ☀️ Light mode icon
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                  d="M12 3v1m0 16v1m8.49-8.49h1m-18 0h1m14.14 5.66l-.7-.7M6.34 6.34l-.7-.7m12.02 12.02l-.7-.7M6.34 17.66l-.7-.7M12 7a5 5 0 100 10 5 5 0 000-10z"
+                />
+              </svg>
+            ) : (
+              // 🌙 Dark mode icon
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+              </svg>
+            )}
+
+          </button>
+
+          {/* Mobile menu */}
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden">
+            <svg className="h-6 w-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={menuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'} />
             </svg>
-          ) : (
-            // Moon icon for dark mode
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              stroke="none"
-            >
-              <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
-            </svg>
-          )}
-        </button>
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Dropdown */}
+      {menuOpen && (
+        <div className="md:hidden px-6 pb-4 space-y-2">
+          {navLinks.map(({ label, href }) => (
+            <Link key={href} href={href} className="block text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light">
+              {label}
+            </Link>
+          ))}
+        </div>
+      )}
     </nav>
   )
 }
